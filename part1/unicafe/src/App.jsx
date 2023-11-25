@@ -9,10 +9,17 @@ const Button = ({clickHandler, text}) => {
 }
 
 
-const Display = ({count, text}) => {
+const StatisticLine = ({count, text}) => {
   return (
     <>
-      <p>{text} {count}</p>
+    <tr>
+      <td>
+        {text}
+      </td>
+      <td>
+        {count}
+      </td>
+    </tr>
     </>
   )
 }
@@ -32,12 +39,16 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <div>
       <h2>Statistics</h2>
-      <Display count={good} text="good" />
-      <Display count={neutral} text="neutral" />
-      <Display count={bad} text="bad" />
-      <Display count={totalCount} text="all" />
-      <Display count={avgCount} text="average" />
-      <Display count={positiveRatio} text="positive" />
+      <table>
+        <tbody>
+          <StatisticLine count={good} text="good" />
+          <StatisticLine count={neutral} text="neutral" />
+          <StatisticLine count={bad} text="bad" />
+          <StatisticLine count={totalCount} text="all" />
+          <StatisticLine count={avgCount} text="average" />
+          <StatisticLine count={positiveRatio} text="positive" />
+          </tbody>
+      </table>
     </div>
   )
 }
