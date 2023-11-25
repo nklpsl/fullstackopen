@@ -22,6 +22,13 @@ const Statistics = ({good, neutral, bad}) => {
   let totalCount = good + neutral + bad
   let avgCount = (good - bad) / totalCount
   let positiveRatio = `${good / totalCount * 100} %`
+  if (totalCount == 0) {
+    return (
+      <>
+        <p>No feedback given</p>
+      </>
+    )
+  }
   return (
     <div>
       <h2>Statistics</h2>
