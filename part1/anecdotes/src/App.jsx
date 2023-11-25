@@ -10,6 +10,14 @@ const Button = ({clickHandler, text}) => {
   )
 }
 
+const DisplayAnecdotes = ({anecdote, voteCount}) => {
+  return (
+    <>
+      <p>{anecdote}</p>
+      <p>has {voteCount} vote{voteCount > 0? 's': ''}</p>
+    </>
+  )
+}
 
 const App = () => {
   const anecdotes = [
@@ -23,15 +31,24 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
+
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
 
   const selectRandomAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
 
+  const voteSelectedAnecdote = () => {
+    let updatedVotes = [...votes]
+    updatedVotes[selected] += 1
+    setVotes(updatedVotes)
+  }
+
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
+      <DisplayAnecdotes anecdote={anecdotes[selected]} voteCount={votes[selected]} />
+      <Button clickHandler={voteSelectedAnecdote} text="Vote" />
       <Button clickHandler={selectRandomAnecdote} text="Random Quote" />
     </div>
   )
