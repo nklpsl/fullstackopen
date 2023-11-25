@@ -18,12 +18,19 @@ const Display = ({count, text}) => {
 }
 
 const Statistics = ({good, neutral, bad}) => {
+  
+  let totalCount = good + neutral + bad
+  let avgCount = (good - bad) / totalCount
+  let positiveRatio = `${good / totalCount * 100} %`
   return (
     <div>
       <h2>Statistics</h2>
       <Display count={good} text="good" />
       <Display count={neutral} text="neutral" />
       <Display count={bad} text="bad" />
+      <Display count={totalCount} text="all" />
+      <Display count={avgCount} text="average" />
+      <Display count={positiveRatio} text="positive" />
     </div>
   )
 }
